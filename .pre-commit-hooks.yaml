@@ -3,3 +3,15 @@
   description: This hook ensures that Nickel code can be evaluated.
   language: rust
   entry: nickel-rain eval
+  files: \.(ncl)$
+- id: nickel-format
+  name: Format Nickel
+  description: This hook ensures that Nickel code is formatted.
+  language: rust
+  entry: nickel-rain format
+  files: \.(ncl)$
+- name: Evaluate Configuration
+  description: This hook ensures that the entire configuration can be evaluated.
+  language: rust
+  entry: nickel-rain eval
+  pass_filenames: false
