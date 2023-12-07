@@ -1,4 +1,5 @@
 - id: nickel-eval
   name: Evaluate Nickel
   description: This hook ensures that Nickel code can be evaluated.
+  language: rust
   entry: nickel-rain eval
