@@ -93,9 +93,31 @@ impl FormatCommand {
             return format(stdin(), Output::Stdout);
         }
 
+        let mut changed = 0;
         for file in self.input.files.iter() {
+            let mut opened_file = File::open(file)?;
+            let mut initial_data = Vec::new();
+            File::read_to_end(&mut opened_file, &mut initial_data)?;
+            drop(opened_file);
             format(BufReader::new(File::open(file)?), Output::from_path(file)?)?;
+            let mut opened_file = File::open(file)?;
+            let mut formatted_data = Vec::new();
+            File::read_to_end(&mut opened_file, &mut formatted_data)?;
+            drop(opened_file);
+
+            if initial_data != formatted_data {
+                if let Some(name) = file.file_name() {
+                    println!("Formatted {}", name.to_string_lossy());
+                }
+                changed += 1;
+            }
         }
+
+        if changed > 0 {
+            println!();
+            println!("✨ {} file(s) formatted. ✨ Rerun your commit action.", changed);
+        }
+
         Ok(())
     }
 }
