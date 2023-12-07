@@ -1,0 +1,4 @@
+- id: nickel-eval
+  name: Evaluate Nickel
+  description: This hook ensures that Nickel code can be evaluated.
+  entry: nickel-rain eval
