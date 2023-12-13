@@ -10,9 +10,3 @@
   language: rust
   entry: nickel-rain format
   files: \.(ncl)$
-- id: nickel-build
-  name: Build Configuration
-  description: This hook ensures that the entire configuration can be evaluated.
-  language: rust
-  entry: nickel-rain eval
-  pass_filenames: false
