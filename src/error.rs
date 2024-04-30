@@ -3,6 +3,7 @@ use nickel_lang_core::{
     eval::cache::lazy::CBNCache,
     program::{FieldOverride, FieldPath, Program},
 };
+use nickel_lang_core::error::report::ErrorFormat;
 
 /// Data about an unknown field error.
 pub struct UnknownFieldData {
@@ -196,12 +197,12 @@ impl<T> ResultErrorExt<T> for Result<T, nickel_lang_core::error::Error> {
 impl Error {
     pub fn report(self) {
         match self {
-            Error::Program { mut program, error } => program.report(error),
+            Error::Program { mut program, error } => program.report(error, ErrorFormat::Text),
             Error::Io { error } => {
                 eprintln!("{error}")
             }
             Error::Format { error } => eprintln!("{error}"),
-            Error::CliUsage { error, mut program } => program.report(error),
+            Error::CliUsage { error, mut program } => program.report(error, ErrorFormat::Text),
             Error::CustomizeInfoPrinted => {
                 // Nothing to do, the caller should simply exit.
             }

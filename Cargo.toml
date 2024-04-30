@@ -8,6 +8,6 @@ name = "nickel-rain"
 path = "src/main.rs"
 
 [dependencies]
-nickel-lang-core = { git = "https://github.com/tweag/nickel.git", rev = "7fe5946", features = ["format"] }
+nickel-lang-core = { git = "https://github.com/tweag/nickel.git", rev = "13fe12c", features = ["format"] }
 clap = "4.4.11"
 tempfile = "3.8.1"
